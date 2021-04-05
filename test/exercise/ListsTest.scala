@@ -1,6 +1,5 @@
 package exercise
 
-import u03.Lists._
 import u03.Lists.List._
 import exercise.Lists._
 
@@ -9,7 +8,7 @@ import org.junit.jupiter.api.Test
 
 class ListsTest {
 
-  val lst = Cons(10, Cons(20, Cons(30, Nil())))
+  val lst:Cons[Int] = Cons(10, Cons(20, Cons(30, Nil())))
 
   @Test def dropTest(){
     assertEquals(Cons(20, Cons(30, Nil())),drop(lst,1))
@@ -42,5 +41,28 @@ class ListsTest {
 
   }
 
+  @Test def maxWithOptionalsTest() {
+    import u02.Optionals.Option.Some
+    import u02.Optionals.Option.None
 
+    assertEquals(Some(25), max(Cons(10, Cons(25, Cons(20, Nil())))))
+    assertEquals(None(), max(Nil()))
+
+    assertEquals(Some(-1), max(Cons(-1, Cons(-5, Cons(-2, Nil())))))
+    assertEquals(Some(0), max(Cons(-10, Cons(0, Nil()))))
+  }
+
+  @Test def personListTest() {
+    import u02.Modules.Person
+    import u02.Modules.Person._
+
+    val input:Cons[Person] =
+      Cons(Student("Matteo Brocca", 2020),
+        Cons( Student("Alan Mancini", 2020),
+          Cons( Teacher("Mirko Viroli", "PPS"),
+            Cons( Teacher("Alessandro Ricci", "PCD"),
+              Nil()))))
+
+    assertEquals(Cons("PPS", Cons("PCD", Nil())),getCourses(input))
+  }
 }
