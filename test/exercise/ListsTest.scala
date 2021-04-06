@@ -10,12 +10,14 @@ class ListsTest {
 
   val lst:Cons[Int] = Cons(10, Cons(20, Cons(30, Nil())))
 
+  // 1.a
   @Test def dropTest(){
     assertEquals(Cons(20, Cons(30, Nil())),drop(lst,1))
     assertEquals(Cons(30, Nil ()),drop(lst,2))
     assertEquals(Nil(),drop(lst,5))
   }
 
+  // 1.b
   @Test def flatMapTest(){
     assertEquals(
       Cons(11,Cons(21,Cons(31,Nil()))),
@@ -27,6 +29,7 @@ class ListsTest {
     )
   }
 
+  // 1.c
   @Test def mapAsFlatMapTest(){
     assertEquals(
       Cons(11,Cons(21,Cons(31,Nil()))),
@@ -34,6 +37,7 @@ class ListsTest {
     )
   }
 
+  // 1.d
   @Test def filterAsFlatMapTest(){
     assertEquals(Cons(20, Cons(30, Nil())), filter(lst)(_ >=20))
     assertEquals(Cons(30, Nil()), filter(lst)(_ >=30))
@@ -41,6 +45,7 @@ class ListsTest {
 
   }
 
+  // 2
   @Test def maxWithOptionalsTest() {
     import u02.Optionals.Option.Some
     import u02.Optionals.Option.None
@@ -52,6 +57,7 @@ class ListsTest {
     assertEquals(Some(0), max(Cons(-10, Cons(0, Nil()))))
   }
 
+  // 3
   @Test def personListTest() {
     import u02.Modules.Person
     import u02.Modules.Person._
@@ -66,6 +72,7 @@ class ListsTest {
     assertEquals(Cons("PPS", Cons("PCD", Nil())),getCourses(input))
   }
 
+  // 4
   @Test def foldTest(): Unit = {
     val lst = Cons(3,Cons(7,Cons(1,Cons(5, Nil()))))
     val lst2 = Cons(-5,Cons(-2,Cons(4,Cons(7, Nil()))))
