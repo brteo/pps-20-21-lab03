@@ -65,4 +65,18 @@ class ListsTest {
 
     assertEquals(Cons("PPS", Cons("PCD", Nil())),getCourses(input))
   }
+
+  @Test def foldTest(): Unit = {
+    val lst = Cons(3,Cons(7,Cons(1,Cons(5, Nil()))))
+    val lst2 = Cons(-5,Cons(-2,Cons(4,Cons(7, Nil()))))
+
+    assertEquals(-16, foldLeft(lst)(0)(_-_))
+    assertEquals(16, foldLeft(lst)(0)(_+_))
+    assertEquals("nnpp", foldLeft(lst2)("")( (acc,v) => { if (v>0) acc+"p" else acc+"n" }))
+
+    // assertEquals(0, foldLeft(Nil())(0)(_-_)) <-- HOW?
+
+    assertEquals(-8, foldRight(lst)(0)(_-_))
+    assertEquals("ppnn", foldRight(lst2)("")( (v,acc) => { if (v>0) acc+"p" else acc+"n" }))
+  }
 }
