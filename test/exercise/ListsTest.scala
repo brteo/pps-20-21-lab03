@@ -81,7 +81,7 @@ class ListsTest {
     assertEquals(16, foldLeft(lst)(0)(_+_))
     assertEquals("nnpp", foldLeft(lst2)("")( (acc,v) => { if (v>0) acc+"p" else acc+"n" }))
 
-    // assertEquals(0, foldLeft(Nil())(0)(_-_)) <-- HOW?
+    assertEquals(0, foldLeft(Nil[Int]())(0)(_-_))
 
     assertEquals(-8, foldRight(lst)(0)(_-_))
     assertEquals("ppnn", foldRight(lst2)("")( (v,acc) => { if (v>0) acc+"p" else acc+"n" }))
